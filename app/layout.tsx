@@ -1,30 +1,9 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
-import clsx from "clsx";
-
-import { Providers } from "./providers";
-
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
+import "../styles/globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  // icons: {
-  //   icon: "/favicon.ico",
-  // },
-};
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  title: "Equa",
+  description: "Sitema de gestión de gastos",
 };
 
 export default function RootLayout({
@@ -33,19 +12,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <head />
-      <body
-        className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="flex justify-center items-center">
-            <h1>Hello World</h1>
-          </div>
-        </Providers>
+    <html lang="es">
+      <body className="min-h-screen bg-gray-50 text-gray-900">
+        {children}
       </body>
     </html>
   );
