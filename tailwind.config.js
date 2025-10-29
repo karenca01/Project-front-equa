@@ -13,6 +13,11 @@ const config = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      colors:{
+        "gris-fuerte": "#8C8C8C",
+        "gris-intermedio": "#B2B1B1",
+        "gris-claro": "#D9D9D9"
+      }
     },
   },
   darkMode: "class",

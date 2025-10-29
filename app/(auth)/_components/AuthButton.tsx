@@ -16,7 +16,7 @@ export default function AuthButton() {
 
   return (
     <Button
-      className="bg-gray-100 hover:bg-gray-200 rounded-md"
+      className="bg-gris-claro hover:bg-gray-200 rounded-md"
       onPress={() => router.push(targetPath)}
     >
       {buttonText}

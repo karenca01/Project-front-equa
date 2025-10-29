@@ -31,22 +31,24 @@ export default function LoginPage(){
         return;
     }
     return (
-    <form className="flex flex-col justify-center bg-gray-200 w-[60vh] h-[50vh] px-10 py-2 rounded-md" onSubmit={handleSubmit}>
-        <p className="text-2xl my-4 text-center"><b>Iniciar sesión</b></p>
+        <div className="flex flex-col justify-center bg-gris-claro w-[60vh] h-[50vh] px-10 py-2 rounded-md">
+            <form onSubmit={handleSubmit}>
+                <p className="text-2xl my-4 text-center"><b>Iniciar sesión</b></p>
 
-        <div className="flex flex-col gap-2 my-4 items-center">
-            <Input label="Email" name="userEmail" type="email" isRequired={true} size="md"/>
-            <Input label="Contraseña" name="userPassword" type="password" isRequired={true} size="md"/>
-        </div>
+                <div className="flex flex-col gap-2 my-4 items-center">
+                    <Input label="Email" name="userEmail" type="email" isRequired={true} size="md"/>
+                    <Input label="Contraseña" name="userPassword" type="password" isRequired={true} size="md"/>
+                </div>
 
-        <div className="flex flex-col gap-2 items-center">
-            <Button 
-            className="bg-gray-600 hover:bg-gray-400 text-white"
-            type="submit" 
-            disabled={submitting}>
-                {submitting? <Spinner size='md'/> : "Entrar"}
-            </Button>
+                <div className="flex flex-col gap-2 items-center">
+                    <Button 
+                    className="bg-gris-intermedio hover:bg-gris-fuerte text-white"
+                    type="submit" 
+                    disabled={submitting}>
+                        {submitting? <Spinner size='md'/> : "Entrar"}
+                    </Button>
+                </div>
+            </form>
         </div>
-    </form>
     )
 }
