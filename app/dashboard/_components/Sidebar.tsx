@@ -4,6 +4,8 @@ import { LuBuilding, LuCalendar } from "react-icons/lu";
 import NavItem from "./NavItem";
 import EventSearchBar from "./EventSearchBar";
 import { useRouter } from "next/navigation";
+import CreateEvent from "./CreateEvent";
+import FormCreateNewEvent from "./FormCreateNewEvent";
 
 export default function Sidebar() {
   const router = useRouter();
@@ -40,8 +42,13 @@ export default function Sidebar() {
           path="/dashboard"
         />
       </div>
-      
-      {/* hacer modal para crear evento */}
+
+      <div className="flex flex-row gap-15">
+        <p>Nuevo evento</p>
+        <CreateEvent>
+          <FormCreateNewEvent/>
+        </CreateEvent>
+      </div>
     </nav>
   );
 }
