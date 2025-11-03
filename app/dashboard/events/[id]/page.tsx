@@ -1,5 +1,6 @@
 import { Event } from "@/entities";
 import EventCard from "../../_components/EventCard";
+import { API_URL } from "@/constants";
 
 type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
   eventType?: string;
@@ -11,11 +12,11 @@ export default async function EventPage({
 }: {
   params: { id: string };
 }) {
-  const API_URL = `http://localhost:4000/events/${params.id}`;
+  const { id } = await params;
   let event: PartialEvent | null = null;
 
   try {
-    const res = await fetch(API_URL, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/events/${id}`, { cache: "no-store" });
     if (!res.ok) throw new Error("No se pudo obtener el evento");
     event = await res.json();
   } catch (error) {

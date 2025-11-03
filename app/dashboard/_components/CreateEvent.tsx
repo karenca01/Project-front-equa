@@ -15,7 +15,7 @@ export default function CreateEvent({children}: {children: ReactNode}) {
 
   return (
     <>
-      <Button onPress={onOpen} className='w-[5px] h-auto'><LuPlus size="15"/></Button>
+      <Button onPress={onOpen} className='w-[5px] h-[20px]'><LuPlus size="15"/></Button>
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className='w-full'>
           {() => (
