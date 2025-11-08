@@ -6,17 +6,13 @@ import EventSearchBar from "./EventSearchBar";
 import { useRouter } from "next/navigation";
 import CreateEvent from "./CreateEvent";
 import FormCreateNewEvent from "./FormCreateNewEvent";
-import { useState, useEffect } from "react";
 import ListOfEvents from "./ListOfEvents";
+import { useUser } from "@/context/UserContext";
 
 export default function Sidebar() {
   const router = useRouter();
-  const [userId, setUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const id = localStorage.getItem("userId");
-    setUserId(id);
-  }, []);
+  const {user} = useUser();
+  console.log(user)
 
   const handleEventSearch = (id: string) => {
     if (!id.trim()) return;
@@ -25,6 +21,16 @@ export default function Sidebar() {
 
   return (
     <nav className="w-3/12 h-[100vh] bg-gris-claro flex flex-col items-center py-5 justify-center gap-10">
+      {/* PRUEBA */}
+      <div>
+        {user ? (
+          <p>Hola, {user.userFullName}</p>
+        ) : (
+          <p>No hay usuario autenticado</p>
+        )}
+      </div>
+
+
       <div className="w-3/4 h-1/8">
         <EventSearchBar onSearch={handleEventSearch} />
       </div>
@@ -36,7 +42,7 @@ export default function Sidebar() {
         />
         <NavItem
           icon={<LuUserRound className="text-4xl w-30" />}
-          path="/dashboard/users"
+          path={`/dashboard/users/${user?.userId}`}
         />
       </div>
 
