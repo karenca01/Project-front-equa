@@ -1,55 +1,25 @@
 "use client";
-import { API_URL } from "@/constants";
-import { useState, useEffect } from "react";
+import { useUser } from "@/context/UserContext";
 
-type profileUser = {
-  userId: string
-  username: string
-  userEmail: string
-  userFullName: string
-}
+export default function UserPage() {
+  const { user } = useUser();
 
-export default async function UserPage({ params }: { params: { userId: string } }) {
-  const [user, setUser] = useState<profileUser>();
-  const res = await fetch(`${API_URL}/users/${params.userId}`, {
-    credentials: "include",  
-    cache: "no-store",       
-  });
+  if (!user) return <p>Cargando usuario...</p>;
 
-  if (!res.ok) {
-    console.error("Error al obtener usuario:", res.status);
-    return <p>No autorizado o usuario no encontrado.</p>;
-  }
-
-  useEffect(() => {
-    if(!params.userId) return;
-
-    const fetchUser = async () => {
-      const res = await fetch(`${API_URL}/users/${params.userId}`, {
-        credentials: "include",  
-        cache: "no-store",       
-      });
-
-      if (!res.ok) {
-        console.error("Error al obtener usuario:", res.status);
-        return;
-      }
-
-      const user = await res.json();
-      setUser(user);
-    }
-
-    fetchUser();
-  }, [params.userId]);
-
-  if(!user){
-    return <p>No autorizado o usuario no encontrado.</p>;
-  }else{
-    return (
-      <div className="p-8">
-        <h1 className="text-2xl font-bold mb-2">Perfil de {user.userFullName}</h1>
-        <p>Email: {user.userEmail}</p>
+  return (
+    <div className="flex flex-col justify-center w-full h-screen p-10">
+      <div className="flex flex-col h-1/4 justify-center">
+        <h1 className="text-4xl font-bold mb-2">
+          {user.userFullName}
+        </h1>
+        <p className="p-2"><b>Username: </b>{user.username}</p>
       </div>
-    );
-  }
+      <div className="w-full h-1 bg-gris-fuerte"/>
+      <div className="flex flex-col h-2/4 pt-5">
+        <p><b>Email: </b>{user.userEmail}</p>
+        <p><b>Eventos creados: </b>{user.eventsCreated}</p>
+        <p><b>Eventos participados: </b>{user.eventsParticipated}</p>
+      </div>
+    </div>
+  );
 }

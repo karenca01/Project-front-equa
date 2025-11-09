@@ -9,6 +9,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { LuPlus } from 'react-icons/lu';
+import { useEffect } from "react";
 
 export default function CreateEvent({children}: {children: ReactNode}) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();

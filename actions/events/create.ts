@@ -12,22 +12,21 @@ export async function createEvent(formData: FormData) {
     event[key] = formData.get(key);
   }
 
-  // 👇 Espera los headers aquí
-  const headers = await authHeaders();
+  // const headers = await authHeaders();
 
   const response = await fetch(`${API_URL}/events`, {
     method: "POST",
     body: JSON.stringify(event),
     headers: {
       "Content-Type": "application/json",
-      ...headers,
     },
+    credentials: "include",
   });
 
   if (response.status === 201) {
-    const newEvent = await response.json(); // ✅ Recibe el evento creado
+    const newEvent = await response.json(); 
     revalidateTag("dashboard:events");
-    redirect(`/dashboard/events/${newEvent.eventId}`); // ✅ Usa el ID real
+    redirect(`/dashboard/events/${newEvent.eventId}`); 
   }else {
     console.error("Error al crear el evento:", await response.text());
   }

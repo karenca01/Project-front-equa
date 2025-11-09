@@ -12,7 +12,7 @@ export default function LoginPage() {
     e.preventDefault();
     setSubmitting(true);
 
-    // Recolectamos los datos del formulario
+    // atos del formulario
     const formData = new FormData(e.currentTarget);
     const authData = {
       userEmail: formData.get("userEmail"),
@@ -20,20 +20,17 @@ export default function LoginPage() {
     };
 
     try {
-      // 1️⃣ Hacemos login
       const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(authData),
-        credentials: "include", // IMPORTANTE: para enviar y recibir cookies
+        credentials: "include", // envira y recibir cookies
       });
 
       if (response.ok) {
-        console.log("✅ Login exitoso, esperando que se guarde la cookie...");
-        // Esperamos un poco para asegurar que el navegador haya guardado la cookie
+        console.log("Login exitoso, guardando la cookie");
         await new Promise((r) => setTimeout(r, 300));
 
-        // 2️⃣ Obtenemos los datos del usuario autenticado
         const userRes = await fetch(`${API_URL}/auth/me`, {
           method: "GET",
           credentials: "include",
@@ -41,17 +38,17 @@ export default function LoginPage() {
 
         if (userRes.ok) {
           const user = await userRes.json();
-          console.log("👤 Usuario autenticado:", user);
-          // 3️⃣ Redirigimos al dashboard
+          console.log("Usuario autenticado:", user);
+
           router.push("/dashboard");
         } else {
-          console.warn("⚠️ No se pudo obtener el usuario después del login");
+          console.warn("No se pudo obtener el usuario después del login");
         }
       } else {
-        console.error("❌ Credenciales inválidas o error en login");
+        console.error("Credenciales inválidas o error en login");
       }
     } catch (error) {
-      console.error("🚨 Error en el proceso de login:", error);
+      console.error("Error en el proceso de login:", error);
     } finally {
       setSubmitting(false);
     }
