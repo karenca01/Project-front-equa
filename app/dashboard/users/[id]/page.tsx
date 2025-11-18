@@ -1,5 +1,7 @@
 "use client";
 import { useUser } from "@/context/UserContext";
+import UpdateUser from "./_components/UpdateUser";
+import FormUpdateUser from "./_components/FormUpdateUser";
 
 export default function UserPage() {
   const { user } = useUser();
@@ -16,7 +18,9 @@ export default function UserPage() {
           <p className="text-xl"><b>Username: </b>{user.username}</p>
         </div>
         <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
-          <p>MODAL EDITAR</p>
+          <UpdateUser>
+            <FormUpdateUser user={user}/>
+          </UpdateUser>
         </div>
       </div>
 
