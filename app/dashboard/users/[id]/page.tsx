@@ -2,6 +2,7 @@
 import { useUser } from "@/context/UserContext";
 import UpdateUser from "./_components/UpdateUser";
 import FormUpdateUser from "./_components/FormUpdateUser";
+import ListOfEvents from "./_components/ListOfEvents";
 
 export default function UserPage() {
   const { user } = useUser();
@@ -28,8 +29,13 @@ export default function UserPage() {
 
       <div className="w-full h-9/12 p-5">
         <p><b>Email: </b>{user.userEmail}</p>
-        <p><b>Eventos creados: </b>{user.eventsCreated}</p>
-        <p><b>Eventos participados: </b>{user.eventsParticipated}</p>
+        <div className="w-full h-fit">
+          <p><b>Eventos creados: </b>{user.eventsCreated}</p>
+          <ListOfEvents/>
+        </div>
+        <div className="w-full h-fit">
+          <p><b>Eventos participados: </b>{user.eventsParticipated}</p>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import { Event } from "@/entities";
 import EventCard from "../../_components/EventCard";
 import { API_URL } from "@/constants";
+import AddExpense from "./_components/AddExpense";
+import FormAddExpense from "./_components/FormAddExpense";
 
 type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
   eventType?: string;
@@ -36,7 +38,10 @@ export default async function EventPage({
           <p className="text-xl">{event.eventDescription}</p>
         </div>
         <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
-          <p>+ gasto</p>
+          {/* <p>+ gasto</p> */}
+          <AddExpense>
+            <FormAddExpense/>
+          </AddExpense>
         </div>
       </div>
       <div className="w-full bg-gris-fuerte h-1"/>
