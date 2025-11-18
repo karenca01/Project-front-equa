@@ -8,7 +8,7 @@ export default function FormUpdateUser({user}: {user: User}){
 
     return(
         <form action={updateUserById} className="bg-gris-intermedio py-2 px-4 flex flex-col gap-6 w-full rounded-lg">
-            <h1 className="text-2xl font-bold">Editar usuario</h1>
+            <h1 className="text-3xl font-bold text-center">Editar usuario</h1>
             <Input label="Nombre de usuario" name="username" defaultValue={user.username}/>
             <Input label="Nombre completo" name="userFullName" defaultValue={user.userFullName}/>
             <Input label="Correo electrónico" name="userEmail" defaultValue={user.userEmail}/>

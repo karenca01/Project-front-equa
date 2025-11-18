@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function EventCard({ event }: { event: Event }) {
     return(
-        <div className="p-10 w-full">
+        <div className="p-2 w-full">
             <Card className="hover:scale-110 transition-all w-[200px]">
             <CardBody>
                 <b>

@@ -1,10 +1,3 @@
-// export default function ListOfEvents() {
-//     return (
-//         <div className="flex flex-col bg-white rounded-sm w-full h-full">
-//             list of events
-//         </div>
-//     )
-// }
 "use client";
 
 import { API_URL } from "@/constants";
@@ -69,7 +62,7 @@ export default function ListOfEvents() {
   }
 
   return (
-    <div className="flex flex-col bg-white rounded-sm w-full h-full">
+    <div className="flex flex-col rounded-sm w-full h-full">
       {events.map((event: Event) => (
         <EventCard key={event.eventId} event={event} />
       ))}
