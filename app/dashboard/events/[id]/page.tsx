@@ -28,8 +28,23 @@ export default async function EventPage({
   }
 
   return (
-    <div className="flex justify-center items-center h-[80vh]">
-      <EventCard event={event as Event} />
+    <div className="flex flex-col p-5 w-9/12 h-[100vh]">
+      {/* <EventCard event={event as Event} /> */}
+      <div className="flex flex-row h-3/12">
+        <div className="flex flex-col justify-center w-9/12 h-full">
+          <h1 className="text-5xl font-bold py-4">{event.eventName}</h1>
+          <p className="text-xl">{event.eventDescription}</p>
+        </div>
+        <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
+          <p>+ gasto</p>
+        </div>
+      </div>
+      <div className="w-full bg-gris-fuerte h-1"/>
+      <div className="w-full h-9/12 p-5">
+        <p>HACER LA LISTA DE GASTOS DEL EVENTO</p>
+        <p>HACER LA LISTA DE GASTOS DEL EVENTO</p>
+        <p>HACER LA LISTA DE GASTOS DEL EVENTO</p>
+      </div>
     </div>
   );
 }
