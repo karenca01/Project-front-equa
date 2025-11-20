@@ -4,6 +4,8 @@ import FormAddExpense from "./_components/FormAddExpense";
 import AddExpense from "./_components/AddExpense";
 import AddParticipantsModal from "./_components/AddParticipant";
 import ParticipantsSelector from "./_components/ParticipantsSelector";
+import UpdateEvent from "./_components/UpdateEvent";
+import FormUpdateEvent from "./_components/FormUpdateEvent";
 
 type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
   eventType?: string;
@@ -13,9 +15,11 @@ type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
 export default async function EventPage({
   params,
 }: {
-  params: { id: string };
+  // params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  // const { id } = params;
   let event: PartialEvent | null = null;
 
   try {
@@ -35,7 +39,12 @@ export default async function EventPage({
       {/* <EventCard event={event as Event} /> */}
       <div className="flex flex-row h-3/12">
         <div className="flex flex-col justify-center w-9/12 h-full">
-          <h1 className="text-5xl font-bold py-4">{event.eventName}</h1>
+          <div className="flex flex-row items-center gap-5">
+            <h1 className="text-5xl font-bold py-4">{event.eventName}</h1>
+            <UpdateEvent>
+              <FormUpdateEvent event={event as Event}/>
+            </UpdateEvent>
+          </div>
           <p className="text-xl">{event.eventDescription}</p>
         </div>
         <div className="flex flex-row justify-center items-center w-3/12 pt-4 h-full gap-2">
