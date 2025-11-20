@@ -6,6 +6,7 @@ import AddParticipantsModal from "./_components/AddParticipant";
 import ParticipantsSelector from "./_components/ParticipantsSelector";
 import UpdateEvent from "./_components/UpdateEvent";
 import FormUpdateEvent from "./_components/FormUpdateEvent";
+import EventExpensesList from "./_components/EventExpensesList";
 
 type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
   eventType?: string;
@@ -57,10 +58,8 @@ export default async function EventPage({
         </div>
       </div>
       <div className="w-full bg-gris-fuerte h-1"/>
-      <div className="w-full h-9/12 p-5">
-        <p>HACER LA LISTA DE GASTOS DEL EVENTO</p>
-        <p>HACER LA LISTA DE GASTOS DEL EVENTO</p>
-        <p>HACER LA LISTA DE GASTOS DEL EVENTO</p>
+      <div className="w-full h-9/12 p-5 overflow-y-auto">
+        <EventExpensesList eventId={id}/>
       </div>
     </div>
   );
