@@ -49,7 +49,7 @@ export default async function EventPage({
         </div>
         <div className="flex flex-row justify-center items-center w-3/12 pt-4 h-full gap-2">
           <AddExpense>
-            <FormAddExpense/>
+            <FormAddExpense eventId={id}/>
           </AddExpense>
           <AddParticipantsModal>
             <ParticipantsSelector eventId={id}/>
