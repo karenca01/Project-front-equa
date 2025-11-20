@@ -1,8 +1,9 @@
 import { Event } from "@/entities";
-import EventCard from "../../_components/EventCard";
 import { API_URL } from "@/constants";
-import AddExpense from "./_components/AddExpense";
 import FormAddExpense from "./_components/FormAddExpense";
+import AddExpense from "./_components/AddExpense";
+import AddParticipantsModal from "./_components/AddParticipant";
+import ParticipantsSelector from "./_components/ParticipantsSelector";
 
 type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
   eventType?: string;
@@ -37,11 +38,13 @@ export default async function EventPage({
           <h1 className="text-5xl font-bold py-4">{event.eventName}</h1>
           <p className="text-xl">{event.eventDescription}</p>
         </div>
-        <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
-          {/* <p>+ gasto</p> */}
+        <div className="flex flex-row justify-center items-center w-3/12 pt-4 h-full gap-2">
           <AddExpense>
             <FormAddExpense/>
           </AddExpense>
+          <AddParticipantsModal>
+            <ParticipantsSelector eventId={id}/>
+          </AddParticipantsModal>
         </div>
       </div>
       <div className="w-full bg-gris-fuerte h-1"/>

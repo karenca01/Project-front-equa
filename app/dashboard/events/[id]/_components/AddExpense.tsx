@@ -9,14 +9,13 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { LuPlus } from 'react-icons/lu';
-import { useEffect } from "react";
 
-export default function AddExpense({children}: {children: ReactNode}) {
+export default function ModalGeneric({children}: {children: ReactNode}) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   return (
     <>
-      <Button onPress={onOpen} className='w-[30px] h-[30px] rounded-full'><LuPlus size="15"/></Button>
+      <Button className='w-[40px] h-[40px] rounded-full' onPress={onOpen}>{<LuPlus size="20"/>}</Button>
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className='w-full'>
           {() => (
