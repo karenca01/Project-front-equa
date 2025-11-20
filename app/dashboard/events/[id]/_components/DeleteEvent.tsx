@@ -1,0 +1,33 @@
+'use client';
+import { ReactNode } from 'react';
+
+import {
+  Modal,
+  ModalContent,
+  ModalBody,
+  Button,
+  useDisclosure,
+} from "@heroui/react";
+import { LuTrash } from 'react-icons/lu';
+
+export default function DeleteEvent({children}: {children: ReactNode}) {
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+  return (
+    <>
+      <Button onPress={onOpen} color="danger"><LuTrash size="20"/></Button>
+      <Modal className="bg-gris-fuerte items-center" isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
+        <ModalContent className='w-[300px]'>
+          {(onClose) => (
+            <>
+              <ModalBody>
+                {children}
+                <Button className='w-[100px]' onPress={onClose}>Cancelar</Button>
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
