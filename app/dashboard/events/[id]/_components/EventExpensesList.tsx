@@ -1,7 +1,7 @@
 import { API_URL } from "@/constants";
 
 export default async function EventExpensesList({ eventId }: { eventId: string }) {
-  let expenses = [];
+  let expenses: any[] = [];
 
   try {
     const res = await fetch(`${API_URL}/expenses/event/${eventId}`, {
@@ -10,7 +10,8 @@ export default async function EventExpensesList({ eventId }: { eventId: string }
 
     if (!res.ok) throw new Error("No se pudieron obtener los gastos");
 
-    expenses = await res.json();
+    const data = await res.json();
+    expenses = Array.isArray(data) ? data : [];
   } catch (error) {
     console.error("Error al cargar gastos:", error);
     return <p className="text-red-500">No se pudieron cargar los gastos.</p>;
@@ -33,7 +34,9 @@ export default async function EventExpensesList({ eventId }: { eventId: string }
               Pagado por: {exp.paidBy?.username ?? "Usuario"}
             </p>
           </div>
-          <p className="text-xl font-bold">${Number(exp.expenseAmount).toFixed(2)}</p>
+          <p className="text-xl font-bold">
+            ${Number(exp.expenseAmount).toFixed(2)}
+          </p>
         </div>
       ))}
     </div>
