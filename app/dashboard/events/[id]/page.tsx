@@ -22,7 +22,6 @@ export default async function EventPage({
   const { id } = await params;
   // const { id } = params;
   let event: PartialEvent | null = null;
-
   try {
     const res = await fetch(`${API_URL}/events/${id}`, { cache: "no-store" });
     if (!res.ok) throw new Error("No se pudo obtener el evento");
@@ -33,6 +32,19 @@ export default async function EventPage({
 
   if (!event) {
     return <div>No se encontró el evento</div>;
+  }
+
+  let participants: any[] = [];
+  try {
+    const resParticipants = await fetch(`${API_URL}/events/${id}/participants`, {
+      cache: "no-store",
+    });
+
+    if (!resParticipants.ok) throw new Error("No se pudieron obtener los participantes");
+
+    participants = await resParticipants.json();
+  } catch (error) {
+    console.error("Error al obtener los participantes:", error);
   }
 
   return (
@@ -50,7 +62,7 @@ export default async function EventPage({
         </div>
         <div className="flex flex-row justify-center items-center w-3/12 pt-4 h-full gap-2">
           <AddExpense>
-            <FormAddExpense eventId={id}/>
+            <FormAddExpense eventId={id} participants={participants}/>
           </AddExpense>
           <AddParticipantsModal>
             <ParticipantsSelector eventId={id}/>

@@ -1,28 +1,64 @@
-"use server"
+"use server";
+
 import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
-export default async function addExpense(formData: FormData) {
-    const headers = await authHeaders();
+export async function addExpense(formData: FormData) {
+  try {
+    const expenseDescription = formData.get("expenseDescription");
+    const expenseAmount = Number(formData.get("expenseAmount"));
+    const eventId = formData.get("eventId");
 
-    const data: Record<string, any> = {};
-    formData.forEach((value, key) => {
-        if (!key.startsWith("$")) data[key] = value;
+    const raw = formData.get("participants");
+    const participants = raw ? JSON.parse(raw as string) : [];
+
+    const splits = participants.map((p: any) => {
+
+      if (p.percentage !== null && p.percentage !== undefined) {
+        return {
+          userId: p.userId,
+          expenseSplitPercentage: Number(p.percentage),
+        };
+      }
+
+      if (p.amount !== null && p.amount !== undefined) {
+        return {
+          userId: p.userId,
+          expenseSplitAmount: Number(p.amount),
+        };
+      }
+
+      throw new Error("Cada participante debe tener amount o percentage");
     });
 
-    data.expenseAmount = Number(data.expenseAmount);
+    const body = {
+      expenseDescription,
+      expenseAmount,
+      eventId,
+      splits,
+    };
 
-    const response = await fetch(`${API_URL}/expenses`, {
-        method: "POST",
-        headers: {
-            ...headers,
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
+    // console.log("Body enviado:", body);
+
+    const res = await fetch(`${API_URL}/expenses`, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        ...(await authHeaders())
+    },
+      credentials: "include",
+      body: JSON.stringify(body),
     });
 
-    if (response.ok) {
-        redirect(`/dashboard/events/${data.eventId}`);
+    if (!res.ok) {
+    //   console.log(await res.text());
+      throw new Error("Error al crear el gasto");
     }
+
+    revalidatePath(`/dashboard/events/${eventId}`);
+  } catch (error) {
+    // console.error("Error en addExpense:", error);
+    throw error;
+  }
 }

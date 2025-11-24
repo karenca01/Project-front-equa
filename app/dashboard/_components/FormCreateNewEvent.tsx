@@ -7,7 +7,7 @@ export default function FormCreateNewEvent() {
       <h1 className="text-3xl font-bold text-center">Nuevo evento</h1>
       <Input isRequired label="Nombre" placeholder="Comida año nuevo" name="eventName"/>
       <Input isRequired label="Descripción" placeholder="Familia López Pérez" name="eventDescription"/>
-      <Input label="Tipo" placeholder="Public" name="eventType"/>
+      <Input label="Tipo" placeholder="Public" name="eventType" defaultValue="Public"/>
       <Button type="submit" className="bg-gris-fuerte hover:bg-gray-600">Crear</Button>
     </form>
   );

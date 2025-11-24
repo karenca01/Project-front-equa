@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import { Spinner, Button } from "@heroui/react";
 import { LuTrash2 } from "react-icons/lu";
 
+type Participant = User & { isCreator: boolean };
+
 export default function ListParticipants({ eventId }: { eventId: string }) {
-  const [participants, setParticipants] = useState<User[]>([]);
+  const [participants, setParticipants] = useState<Participant[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState<string | null>(null);
 
@@ -26,7 +28,7 @@ export default function ListParticipants({ eventId }: { eventId: string }) {
 
         if (!res.ok) throw new Error("Error al obtener participantes");
 
-        const data: User[] = await res.json();
+        const data: Participant[] = await res.json();
         setParticipants(data);
       } catch (err) {
         console.error("Error al cargar los participantes:", err);
@@ -55,9 +57,7 @@ export default function ListParticipants({ eventId }: { eventId: string }) {
 
       if (!res.ok) throw new Error("Error al eliminar participante");
 
-      setParticipants((prev) =>
-        prev.filter((p) => p.userId !== userId)
-      );
+      setParticipants((prev) => prev.filter((p) => p.userId !== userId));
     } catch (err) {
       console.error("Error al eliminar participante:", err);
     } finally {
@@ -100,7 +100,7 @@ export default function ListParticipants({ eventId }: { eventId: string }) {
             color="danger"
             variant="flat"
             onClick={() => handleDelete(p.userId)}
-            isDisabled={deleting === p.userId}
+            isDisabled={p.isCreator || deleting === p.userId}
           >
             {deleting === p.userId ? (
               <Spinner size="sm" />
