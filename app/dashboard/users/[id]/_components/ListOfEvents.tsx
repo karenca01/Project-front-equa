@@ -13,14 +13,13 @@ export default function ListOfEvents() {
   const [loadingEvents, setLoadingEvents] = useState(true);
 
   useEffect(() => {
-    // Esperamos a tener la info del usuario
     if (loading || !user) return;
 
     const fetchEvents = async () => {
       try {
         const res = await fetch(`${API_URL}/events`, {
           method: "GET",
-          credentials: "include", // incluye las cookies de sesión
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -29,9 +28,11 @@ export default function ListOfEvents() {
         if (!res.ok) throw new Error("Error al obtener los eventos");
 
         const data: Event[] = await res.json();
-        // Filtramos los eventos creados por el usuario autenticado
+
         const filtered = data.filter(
-          (ev) => ev.createdBy?.userId === user.userId
+          (ev) =>
+            ev.participants?.some((p) => p.userId === user.userId) &&
+            ev.createdBy?.userId !== user.userId
         );
 
         setEvents(filtered);
@@ -56,7 +57,7 @@ export default function ListOfEvents() {
   if (events.length === 0) {
     return (
       <div className="flex justify-center items-center h-[80vh] text-gray-500">
-        <p>No has creado ningún evento todavía.</p>
+        <p>No estás participando en eventos creados por otros usuarios.</p>
       </div>
     );
   }

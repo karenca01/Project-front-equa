@@ -2,6 +2,7 @@
 import { useUser } from "@/context/UserContext";
 import UpdateUser from "./_components/UpdateUser";
 import FormUpdateUser from "./_components/FormUpdateUser";
+import ListOfMyEvents from "./_components/ListOfMyEvents";
 import ListOfEvents from "./_components/ListOfEvents";
 
 export default function UserPage() {
@@ -31,10 +32,11 @@ export default function UserPage() {
         <p><b>Email: </b>{user.userEmail}</p>
         <div className="w-full h-fit">
           <p><b>Eventos creados: </b>{user.eventsCreated}</p>
-          <ListOfEvents/>
+          <ListOfMyEvents/>
         </div>
         <div className="w-full h-fit">
           <p><b>Eventos participados: </b>{user.eventsParticipated}</p>
+          <ListOfEvents/>
         </div>
       </div>
     </div>

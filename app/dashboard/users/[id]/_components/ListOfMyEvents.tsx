@@ -2,12 +2,12 @@
 
 import { API_URL } from "@/constants";
 import { Event } from "@/entities";
-import EventCard from "./EventCard";
 import { useUser } from "@/context/UserContext";
 import { useEffect, useState } from "react";
 import { Spinner } from "@heroui/react";
+import EventCard from "../../../_components/EventCard";
 
-export default function ListOfEvents() {
+export default function ListOfMyEvents() {
   const { user, loading } = useUser();
   const [events, setEvents] = useState<Event[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
@@ -19,7 +19,7 @@ export default function ListOfEvents() {
       try {
         const res = await fetch(`${API_URL}/events`, {
           method: "GET",
-          credentials: "include",
+          credentials: "include", 
           headers: {
             "Content-Type": "application/json",
           },
@@ -30,9 +30,7 @@ export default function ListOfEvents() {
         const data: Event[] = await res.json();
 
         const filtered = data.filter(
-          (ev) =>
-            ev.createdBy?.userId === user.userId || // creados por él
-            ev.participants?.some((p) => p.userId === user.userId) // donde participa
+          (ev) => ev.createdBy?.userId === user.userId
         );
 
         setEvents(filtered);
@@ -56,14 +54,14 @@ export default function ListOfEvents() {
 
   if (events.length === 0) {
     return (
-      <div className="flex justify-center items-center h-[80vh] text-gray-500 overflow-y-auto">
-        <p>No has creado o participado en ningún evento todavía.</p>
+      <div className="flex justify-center items-center h-[80vh] text-gray-500">
+        <p>No has creado ningún evento todavía.</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col rounded-sm w-full h-full">
+    <div className="flex flex-row rounded-sm w-full h-full">
       {events.map((event: Event) => (
         <EventCard key={event.eventId} event={event} />
       ))}
