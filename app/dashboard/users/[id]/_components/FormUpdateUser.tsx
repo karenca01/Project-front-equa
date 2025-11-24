@@ -12,7 +12,7 @@ export default function FormUpdateUser({user}: {user: User}){
             <Input label="Nombre de usuario" name="username" defaultValue={user.username}/>
             <Input label="Nombre completo" name="userFullName" defaultValue={user.userFullName}/>
             <Input label="Correo electrónico" name="userEmail" defaultValue={user.userEmail}/>
-            <Input label="Contraseña" name="userPassword" defaultValue={user.userPassword}/>
+            <Input label="Contraseña" name="userPassword"/>
             <Button type="submit" className="bg-gris-fuerte hover:bg-gray-600">Guardar</Button>
         </form>
     )

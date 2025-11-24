@@ -1,6 +1,8 @@
 import { API_URL } from "@/constants";
+import EventExpenseItem from "./ExpenseItem";
 
 export default async function EventExpensesList({ eventId }: { eventId: string }) {
+
   let expenses: any[] = [];
 
   try {
@@ -23,21 +25,8 @@ export default async function EventExpensesList({ eventId }: { eventId: string }
 
   return (
     <div className="flex flex-col gap-3 mt-4">
-      {expenses.map((exp: any) => (
-        <div
-          key={exp.expenseId}
-          className="border border-gray-200 p-4 rounded-lg flex justify-between items-center"
-        >
-          <div>
-            <p className="text-lg font-semibold">{exp.expenseDescription}</p>
-            <p className="text-sm text-gris-intermedio">
-              Pagado por: {exp.paidBy?.username ?? "Usuario"}
-            </p>
-          </div>
-          <p className="text-xl font-bold">
-            ${Number(exp.expenseAmount).toFixed(2)}
-          </p>
-        </div>
+      {expenses.map((exp) => (
+        <EventExpenseItem key={exp.expenseId} expense={exp} />
       ))}
     </div>
   );
