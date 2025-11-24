@@ -11,4 +11,3 @@ export async function getUser() {
   const data = await res.json();
   return data;
 }
-

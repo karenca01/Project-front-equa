@@ -18,7 +18,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     const fetchUser = async () => {
       try {
         const data = await getUser();
-        console.log(data)
         setUser(data);
       } catch {
         setUser(null);
