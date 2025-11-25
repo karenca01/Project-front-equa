@@ -54,7 +54,7 @@ export default function ListOfMyEvents() {
 
   if (events.length === 0) {
     return (
-      <div className="flex justify-center items-center h-[80vh] text-gray-500">
+      <div className="flex justify-center items-center h-[150px] text-gray-500">
         <p>No has creado ningún evento todavía.</p>
       </div>
     );

@@ -56,7 +56,7 @@ export default function ListOfEvents() {
 
   if (events.length === 0) {
     return (
-      <div className="flex justify-center items-center h-[80vh] text-gray-500">
+      <div className="flex justify-center items-center h-[150px] text-gray-500">
         <p>No estás participando en eventos creados por otros usuarios.</p>
       </div>
     );
