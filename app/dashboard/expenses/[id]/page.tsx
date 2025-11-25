@@ -28,29 +28,32 @@ export default async function ExpensePage({
   const participants = expense.splits ?? [];
 
   return (
-    <div className="flex flex-col justify-center w-9/12 h-[100vh] p-5">
-      <div className="flex flex-row h-3/12">
-        <div className="flex flex-col justify-center w-9/12 h-full">
-          <h1 className="text-5xl font-bold py-4">
-            {expense.expenseDescription}
-          </h1>
-          <p className="text-xl">
-            <b>Registrado por: </b>
-            {expense.paidBy?.username || "Desconocido"}
+    <div className="flex flex-col w-10/12 min-h-screen p-6 space-y-6">
+      {/* Header del gasto */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex-1">
+          <h1 className="text-4xl md:text-5xl font-bold">{expense.expenseDescription}</h1>
+          <p className="text-lg md:text-xl mt-1">
+            <b>Registrado por:</b> {expense.paidBy?.username || "Desconocido"}
           </p>
         </div>
-        <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
+
+        <div className="flex items-center">
           <UpdateExpense>
             <FormEditExpense expense={expense} participants={participants} />
           </UpdateExpense>
         </div>
       </div>
 
-      <div className="w-full bg-gris-fuerte h-1" />
+      {/* Separador */}
+      <div className="w-full border-t border-gris-muy-fuerte" />
 
-      <div className="w-full h-9/12 p-5">
-        <h2 className="text-2xl font-semibold mb-2">Splits</h2>
-        <SplitsList expenseId={id}/>
+      {/* Sección de Splits */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-2xl md:text-3xl font-semibold">Splits</h2>
+        <div className="overflow-y-auto max-h-96">
+          <SplitsList expenseId={id} />
+        </div>
       </div>
     </div>
   );

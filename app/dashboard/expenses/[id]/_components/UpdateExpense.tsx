@@ -15,7 +15,7 @@ export default function UpdateExpense({children}: {children: ReactNode}) {
 
   return (
     <>
-      <Button className='bg-gris-intermedio rounded-full' onPress={onOpen}>{<LuPencil size="15"/>}</Button>
+      <Button className='w-full' variant="flat" color='primary' onPress={onOpen}>Editar gasto{<LuPencil size="15"/>}</Button>
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className='w-full'>
           {() => (

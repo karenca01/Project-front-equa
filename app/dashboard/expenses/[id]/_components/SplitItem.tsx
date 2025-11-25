@@ -11,24 +11,25 @@ export default function SplitItem({ split }: { split: any }) {
   return (
     <div
       key={split.expenseSplitId}
-      className="border border-gray-200 p-4 rounded-lg flex justify-between items-center"
+      className="bg-white p-4 rounded-xl flex justify-between items-center shadow-sm hover:shadow-md transition-shadow duration-200"
     >
-      <div>
-        <p className="text-lg font-semibold">
+      <div className="flex flex-col">
+        <p className="text-lg font-bold hover:text-indigo-400 transition-colors">
           {split.user?.username ?? "Usuario"}
         </p>
-        <p className="text-sm text-gris-intermedio">
+        <p className="text-sm text-gray-400 mt-1">
           {split.expenseSplitPercentage
             ? `${split.expenseSplitPercentage}%`
             : `$${Number(split.expenseSplitAmount).toFixed(2)}`}
         </p>
       </div>
 
-      <div className="flex flex-row justify-center items-center gap-5">
-        <p className="text-xl font-bold">
-          {split.expenseSplitAmount &&
-            `$${Number(split.expenseSplitAmount).toFixed(2)}`}
-        </p>
+      <div className="flex items-center">
+        {split.expenseSplitAmount && (
+          <p className="text-lg md:text-xl font-bold">
+            ${Number(split.expenseSplitAmount).toFixed(2)}
+          </p>
+        )}
       </div>
     </div>
   );

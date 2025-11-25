@@ -60,7 +60,7 @@ export default function EventBalanceContent({ eventId }: { eventId: string }) {
               if (amount <= 0)
                 return (
                   <p key={o.userId} className="text-black">
-                    No hay balance para pagar a {o.userFullName}
+                    {o.userFullName} no debe nada
                   </p>
                 );
 

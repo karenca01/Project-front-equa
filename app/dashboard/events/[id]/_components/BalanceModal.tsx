@@ -16,11 +16,12 @@ export default function BalanceModal({ children }: { children: ReactNode }) {
   return (
     <>
       <Button
-        className="w-[50px] h-[50px] rounded-full"
+        variant="flat"
+        className="w-full"
         onPress={onOpen}
-        color="primary"
+        color="warning"
       >
-        <LuCalculator size={20} />
+        Genera tu cuenta {<LuCalculator size={20} />}
       </Button>
 
       <Modal

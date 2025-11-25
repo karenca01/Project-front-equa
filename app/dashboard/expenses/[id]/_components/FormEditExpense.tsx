@@ -15,7 +15,7 @@ export default function FormEditExpense({
   return (
     <form
       action={updateExpense}
-      className="bg-gris-intermedio py-2 px-4 flex flex-col gap-6 w-full rounded-lg"
+      className="items-center bg-gris-intermedio py-2 px-4 flex flex-col gap-6 w-full rounded-lg"
     >
       <h1 className="text-3xl font-bold text-center">Editar gasto</h1>
 
@@ -45,7 +45,7 @@ export default function FormEditExpense({
         existingSplits={expense.splits}
       />
 
-      <Button type="submit" className="bg-gris-fuerte hover:bg-gray-600">
+      <Button type="submit" color="success" variant="flat" className="w-fit">
         Guardar cambios
       </Button>
     </form>

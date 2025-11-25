@@ -38,7 +38,7 @@ export function ExpenseSplitsEdit({
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 items-center">
       <h2 className="text-xl font-semibold">Divide tu gasto</h2>
 
       {splits.map((split, index) => (
@@ -71,7 +71,9 @@ export function ExpenseSplitsEdit({
           />
 
           <Button
-            className="bg-red-600 text-white"
+            color="danger"
+            variant="flat"
+            isIconOnly
             onPress={() => removeSplit(split.id)}
           >
             <LuTrash size="15" />
@@ -79,7 +81,7 @@ export function ExpenseSplitsEdit({
         </div>
       ))}
 
-      <Button onPress={addSplit} className="bg-blue-600 text-white">
+      <Button onPress={addSplit} color="primary" variant="flat" isIconOnly>
         <LuPlus size="15" />
       </Button>
     </div>
