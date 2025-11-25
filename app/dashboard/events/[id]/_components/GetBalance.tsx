@@ -42,16 +42,19 @@ export default function EventBalanceContent({ eventId }: { eventId: string }) {
   return (
     <div className="flex flex-col gap-4 py-2">
       {participants.map((p: Participant) => (
-        <Card key={p.userId} className="bg-white text-white">
+        <Card
+          key={p.userId}
+          className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200"
+        >
           <CardHeader>
-            <h3 className="text-lg font-semibold mb-2 text-black">
+            <h3 className="text-lg md:text-xl font-semibold mb-2 text-gris-muy-fuerte">
               Pagar a {p.userFullName}
             </h3>
           </CardHeader>
 
-          <Divider />
+          <Divider className="border-gray-600" />
 
-          <CardBody>
+          <CardBody className="flex flex-col gap-2">
             {participants.map((o: Participant) => {
               if (o.userId === p.userId) return null;
 
@@ -59,15 +62,18 @@ export default function EventBalanceContent({ eventId }: { eventId: string }) {
 
               if (amount <= 0)
                 return (
-                  <p key={o.userId} className="text-black">
+                  <p key={o.userId} className="text-gray-400">
                     {o.userFullName} no debe nada
                   </p>
                 );
 
               return (
-                <div key={o.userId} className="flex justify-between py-1">
-                  <span className="text-black">{o.userFullName}</span>
-                  <span className="font-bold text-black">
+                <div
+                  key={o.userId}
+                  className="flex justify-between py-1 px-2 bg-gray-100 rounded-md"
+                >
+                  <span className="font-semibold">{o.userFullName}</span>
+                  <span className="font-bold">
                     ${amount.toFixed(2)}
                   </span>
                 </div>
