@@ -7,6 +7,8 @@ import ParticipantsSelector from "./_components/ParticipantsSelector";
 import UpdateEvent from "./_components/UpdateEvent";
 import FormUpdateEvent from "./_components/FormUpdateEvent";
 import EventExpensesList from "./_components/EventExpensesList";
+import BalanceModal from "./_components/BalanceModal";
+import GetBalance from "./_components/GetBalance";
 
 type PartialEvent = Omit<Event, "eventType" | "createdBy"> & {
   eventType?: string;
@@ -61,17 +63,22 @@ export default async function EventPage({
           <p className="text-xl">{event.eventDescription}</p>
         </div>
         <div className="flex flex-row justify-center items-center w-3/12 pt-4 h-full gap-2">
-          <AddExpense>
-            <FormAddExpense eventId={id} participants={participants}/>
-          </AddExpense>
-          <AddParticipantsModal>
-            <ParticipantsSelector eventId={id}/>
-          </AddParticipantsModal>
+            <AddExpense>
+              <FormAddExpense eventId={id} participants={participants}/>
+            </AddExpense>
+            <AddParticipantsModal>
+              <ParticipantsSelector eventId={id}/>
+            </AddParticipantsModal>
         </div>
       </div>
       <div className="w-full bg-gris-fuerte h-1"/>
       <div className="w-full h-9/12 p-5 overflow-y-auto">
         <EventExpensesList eventId={id}/>
+      </div>
+      <div className="flex flex-col w-full items-center">
+        <BalanceModal>
+          <GetBalance eventId={id} />
+        </BalanceModal>
       </div>
     </div>
   );

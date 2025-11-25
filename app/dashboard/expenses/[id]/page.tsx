@@ -27,7 +27,6 @@ export default async function ExpensePage({
   const expense: Expense = await res.json();
   const participants = expense.splits ?? [];
 
-
   return (
     <div className="flex flex-col justify-center w-9/12 h-[100vh] p-5">
       <div className="flex flex-row h-3/12">
@@ -42,7 +41,7 @@ export default async function ExpensePage({
         </div>
         <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
           <UpdateExpense>
-            <FormEditExpense expense={expense} participants={participants}/>
+            <FormEditExpense expense={expense} participants={participants} />
           </UpdateExpense>
         </div>
       </div>

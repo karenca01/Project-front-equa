@@ -38,8 +38,8 @@ export async function addExpense(formData: FormData) {
 
     const participants = generateParticipants(splitUsers, splitAmounts, splitPercentages);
     
-    console.log("Participantes:", participants);
-    console.log(formData);
+    // console.log("Participantes:", participants);
+    // console.log(formData);
 
     if(participants.length === 0){
       throw new Error("Debes agregar al menos un participante");
