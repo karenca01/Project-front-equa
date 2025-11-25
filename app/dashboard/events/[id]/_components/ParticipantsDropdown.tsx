@@ -1,3 +1,5 @@
+"use client";
+
 export function ParticipantsDropdown({
   participants = [],
   name,
@@ -12,13 +14,11 @@ export function ParticipantsDropdown({
       required
     >
       <option value="">Selecciona un participante</option>
-
-      {participants.length > 0 &&
-        participants.map((user) => (
-          <option key={user.userId} value={user.userId}>
-            {user.userFullName}
-          </option>
-        ))}
+      {participants.map((user) => (
+        <option key={user.userId} value={user.userId}>
+          {user.userFullName}
+        </option>
+      ))}
     </select>
   );
 }

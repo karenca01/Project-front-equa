@@ -8,13 +8,8 @@ import { LuPlus, LuTrash } from "react-icons/lu";
 export function ExpenseSplits({ participants }: { participants: any[] }) {
   const [splits, setSplits] = useState([{ id: Date.now() }]);
 
-  const addSplit = () => {
-    setSplits([...splits, { id: Date.now() }]);
-  };
-
-  const removeSplit = (id: number) => {
-    setSplits(splits.filter((s) => s.id !== id));
-  };
+  const addSplit = () => setSplits([...splits, { id: Date.now() }]);
+  const removeSplit = (id: number) => setSplits(splits.filter(s => s.id !== id));
 
   return (
     <div className="flex flex-col gap-3">
@@ -23,7 +18,7 @@ export function ExpenseSplits({ participants }: { participants: any[] }) {
       {splits.map((split) => (
         <div key={split.id} className="flex flex-row gap-4 items-center bg-white p-3 rounded-lg">
           <div className="w-1/3">
-            <ParticipantsDropdown participants={participants} name="splitUsers"/>
+            <ParticipantsDropdown participants={participants} name="splitUsers" />
           </div>
 
           <Input
