@@ -8,11 +8,12 @@ import CreateEvent from "./CreateEvent";
 import FormCreateNewEvent from "./FormCreateNewEvent";
 import ListOfEvents from "./ListOfEvents";
 import { useUser } from "@/context/UserContext";
+import LogoutButton from "./LogoutButton";
 
 export default function Sidebar() {
   const router = useRouter();
   const {user} = useUser();
-  console.log(user)
+  // console.log(user)
 
   const handleEventSearch = (id: string) => {
     if (!id.trim()) return;
@@ -55,6 +56,7 @@ export default function Sidebar() {
           </CreateEvent>
         </div>
         <ListOfEvents/>
+        <LogoutButton/>
       </div>
     </nav>
   );
