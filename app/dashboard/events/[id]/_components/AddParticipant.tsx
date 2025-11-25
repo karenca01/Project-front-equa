@@ -15,8 +15,9 @@ export default function AddParticipantsModal({ children }: { children: ReactNode
 
   return (
     <>
-      <Button className="w-[40px] h-[40px] rounded-full" onPress={onOpen}>
-        <LuUserPlus size="20" />
+      <Button className="w-fit gap-5" color="primary" variant="flat" onPress={onOpen}>
+        Participante
+        {<LuUserPlus size="20" />}
       </Button>
 
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>

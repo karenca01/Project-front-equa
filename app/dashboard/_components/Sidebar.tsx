@@ -84,13 +84,12 @@ export default function Sidebar() {
   };
 
   return (
-    <nav className="w-64 bg-gris-fuerte text-white min-h-screen flex flex-col p-5 justify-start shadow-lg">
-      {/* Búsqueda */}
+    <nav className="w-2/12 bg-gris-fuerte text-white min-h-screen flex flex-col p-5 justify-start shadow-lg">
+    {/* <nav className="w-64 bg-gris-fuerte text-white min-h-screen flex flex-col p-5 justify-start shadow-lg"> */}
       <div className="mb-20">
         <EventSearchBar onSearch={handleEventSearch} />
       </div>
 
-      {/* Navegación principal */}
       <div className="flex flex-col gap-4 mb-20">
         <div className="flex justify-center gap-4">
           <NavItem
@@ -114,7 +113,6 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Acciones secundarias */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-row items-center gap-2">
           <p className="text-sm font-medium text-gray-300">Crear nuevo evento</p>

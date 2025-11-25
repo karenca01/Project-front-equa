@@ -15,7 +15,7 @@ export default function AddExpense({children}: {children: ReactNode}) {
 
   return (
     <>
-      <Button className='w-[40px] h-[40px] rounded-full' onPress={onOpen}>{<LuPlus size="20"/>}</Button>
+      <Button className='w-fit' color='success' variant='flat' onPress={onOpen}>Agregar gasto {<LuPlus size="20"/>}</Button>
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className='w-full'>
           {() => (

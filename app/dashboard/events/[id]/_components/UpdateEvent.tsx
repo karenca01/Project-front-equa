@@ -15,7 +15,7 @@ export default function UpdateEvent({children}: {children: ReactNode}) {
 
   return (
     <>
-      <Button className='bg-white rounded-full' onPress={onOpen}>{<LuInfo size="15"/>}</Button>
+      <Button isIconOnly color='default' variant='flat' onPress={onOpen}>{<LuInfo size="20"/>}</Button>
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className='w-full'>
           {() => (

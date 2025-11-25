@@ -50,32 +50,35 @@ export default async function EventPage({
   }
 
   return (
-    <div className="flex flex-col p-5 w-9/12 h-[100vh]">
-      {/* <EventCard event={event as Event} /> */}
-      <div className="flex flex-row h-3/12">
-        <div className="flex flex-col justify-center w-9/12 h-full">
-          <div className="flex flex-row items-center gap-5">
-            <h1 className="text-5xl font-bold py-4">{event.eventName}</h1>
+    <div className="flex flex-col p-6 w-10/12 min-h-screen space-y-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex-1">
+          <div className="flex flex-row items-center gap-4">
+            <h1 className="text-4xl md:text-5xl font-bold">{event.eventName}</h1>
             <UpdateEvent>
-              <FormUpdateEvent event={event as Event}/>
+              <FormUpdateEvent event={event as Event} />
             </UpdateEvent>
           </div>
-          <p className="text-xl">{event.eventDescription}</p>
+          <p className="mt-2 text-lg md:text-xl">{event.eventDescription}</p>
         </div>
-        <div className="flex flex-row justify-center items-center w-3/12 pt-4 h-full gap-2">
-            <AddExpense>
-              <FormAddExpense eventId={id} participants={participants}/>
-            </AddExpense>
-            <AddParticipantsModal>
-              <ParticipantsSelector eventId={id}/>
-            </AddParticipantsModal>
+
+        <div className="flex flex-col gap-2 mt-4 md:mt-0">
+          <AddExpense>
+            <FormAddExpense eventId={id} participants={participants} />
+          </AddExpense>
+          <AddParticipantsModal>
+            <ParticipantsSelector eventId={id} />
+          </AddParticipantsModal>
         </div>
       </div>
-      <div className="w-full bg-gris-fuerte h-1"/>
-      <div className="w-full h-9/12 p-5 overflow-y-auto">
-        <EventExpensesList eventId={id}/>
+
+      <div className="w-full border-t border-gris-muy-fuerte" />
+
+      <div className="flex-1 overflow-y-auto">
+        <EventExpensesList eventId={id} />
       </div>
-      <div className="flex flex-col w-full items-center">
+
+      <div className="flex justify-center mt-4">
         <BalanceModal>
           <GetBalance eventId={id} />
         </BalanceModal>
