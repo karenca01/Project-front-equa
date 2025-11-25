@@ -22,7 +22,7 @@ export default function LogoutButton() {
   return (
     <Button
       color="danger"
-      variant="flat"
+      variant="shadow"
       isLoading={isPending}
       onPress={handleLogout}
     >

@@ -12,7 +12,7 @@ export default function LayoutDashboard({
 }>) {
     const path = usePathname()
     return(
-        <div className="bg-gray-50">
+        <div className="bg-gris-claro">
             <div className="flex flex-row items-center">
                 <Sidebar/>
                 {children}

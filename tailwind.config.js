@@ -14,6 +14,7 @@ const config = {
         mono: ["var(--font-mono)"],
       },
       colors:{
+        "gris-muy-fuerte": "#1B2E87",
         "gris-fuerte": "#3857E7",
         "gris-intermedio": "#CDD9FD",
         "gris-claro": "#E5EAF8"

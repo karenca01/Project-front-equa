@@ -45,7 +45,7 @@ export default function FormAddExpense({ eventId, participants }: { eventId: str
       const percent = splitPercentagesNums[i];
 
       if ((amount !== null && percent !== null && amount > 0 && percent > 0) || (amount === null && percent === null)) {
-        setShowError(`En el split de ${splitUsers[i]}, debes usar solo monto o solo porcentaje`);
+        setShowError(`Por split debes usar solo monto o solo porcentaje`);
         // console.log("Error: split inválido", { user: splitUsers[i], amount, percent });
         return;
       }

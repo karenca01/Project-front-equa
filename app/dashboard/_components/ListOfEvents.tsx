@@ -56,14 +56,14 @@ export default function ListOfEvents() {
 
   if (events.length === 0) {
     return (
-      <div className="flex justify-center items-center h-[80vh] text-gray-500 overflow-y-auto">
+      <div className="flex justify-center items-center h-[100px] text-gray-500">
         <p>No has creado o participado en ningún evento todavía.</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col rounded-sm w-full h-full">
+    <div className="flex flex-col rounded-sm w-full h-[300px] overflow-y-auto">
       {events.map((event: Event) => (
         <EventCard key={event.eventId} event={event} />
       ))}
