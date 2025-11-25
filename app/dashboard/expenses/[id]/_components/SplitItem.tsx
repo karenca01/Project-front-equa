@@ -29,11 +29,6 @@ export default function SplitItem({ split }: { split: any }) {
           {split.expenseSplitAmount &&
             `$${Number(split.expenseSplitAmount).toFixed(2)}`}
         </p>
-
-        {currentUserId === expenseOwnerId && (
-            <p>botón para editar el split</p>
-        //   <DeleteSplitButton splitId={split.expenseSplitId} />
-        )}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export default function SignupPage() {
                 </div>
                 <div className="flex flex-col gap-2 items-center">
                     <Button 
-                    className="bg-gris-intermedio hover:bg-gris-fuerte text-white"
+                    className="bg-gris-fuerte text-white"
                     type="submit">
                         Crear
                     </Button>

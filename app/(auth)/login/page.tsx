@@ -55,7 +55,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center bg-gris-claro w-[60vh] h-[50vh] px-10 py-2 rounded-md">
+    <div className="flex flex-col justify-center bg-gris-claro w-[60vh] h-[50vh] px-10 py-2 rounded-lg">
       <form onSubmit={handleSubmit}>
         <p className="text-2xl my-4 text-center">
           <b>Iniciar sesión</b>
@@ -68,7 +68,7 @@ export default function LoginPage() {
 
         <div className="flex flex-col gap-2 items-center">
           <Button
-            className="bg-gris-intermedio hover:bg-gris-fuerte text-white"
+            className="bg-gris-fuerte text-white"
             type="submit"
             disabled={submitting}
           >
