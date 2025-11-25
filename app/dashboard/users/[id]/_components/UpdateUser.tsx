@@ -15,7 +15,7 @@ export default function UpdateUser({children}: {children: ReactNode}) {
 
   return (
     <>
-      <Button onPress={onOpen}><LuPencil size="20"/></Button>
+      <Button isIconOnly color="primary" variant='flat' onPress={onOpen}><LuPencil size="20"/></Button>
       <Modal className="bg-gris-intermedio" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent className='w-full'>
           {() => (
