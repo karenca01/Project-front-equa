@@ -2,6 +2,8 @@ import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Expense } from "@/entities";
 import SplitsList from "./_components/SplitsList";
+import UpdateExpense from "./_components/UpdateExpense";
+import FormEditExpense from "./_components/FormEditExpense";
 
 export default async function ExpensePage({
   params,
@@ -23,6 +25,8 @@ export default async function ExpensePage({
   }
 
   const expense: Expense = await res.json();
+  const participants = expense.splits ?? [];
+
 
   return (
     <div className="flex flex-col justify-center w-9/12 h-[100vh] p-5">
@@ -37,7 +41,9 @@ export default async function ExpensePage({
           </p>
         </div>
         <div className="flex flex-col justify-center items-center w-3/12 pt-4 h-full">
-          <p>poner el botón de editar aquí</p>
+          <UpdateExpense>
+            <FormEditExpense expense={expense} participants={participants}/>
+          </UpdateExpense>
         </div>
       </div>
 
