@@ -13,19 +13,21 @@ export default function EventExpenseItem({ expense }: { expense: any }) {
   return (
     <div
       key={expense.expenseId}
-      className="border border-gray-200 p-4 rounded-lg flex justify-between items-center"
+      className="bg-white p-4 rounded-xl flex justify-between items-center shadow-sm hover:shadow-md transition-shadow duration-200"
     >
-      <div>
+      <div className="flex flex-col">
         <Link href={`/dashboard/expenses/${expense.expenseId}`}>
-          <p className="text-lg font-semibold">{expense.expenseDescription}</p>
+          <p className="text-lg md:text-xl font-semibold hover:text-indigo-400 transition-colors">
+            {expense.expenseDescription}
+          </p>
         </Link>
-        <p className="text-sm text-gris-intermedio">
+        <p className="text-sm text-gray-400 mt-1">
           Pagado por: {expense.paidBy?.username ?? "Usuario"}
         </p>
       </div>
 
-      <div className="flex flex-row justify-center items-center gap-5">
-        <p className="text-xl font-bold">
+      <div className="flex items-center gap-4">
+        <p className="text-lg md:text-xl font-bold text-bold">
           ${Number(expense.expenseAmount).toFixed(2)}
         </p>
 
@@ -35,4 +37,5 @@ export default function EventExpenseItem({ expense }: { expense: any }) {
       </div>
     </div>
   );
+
 }
