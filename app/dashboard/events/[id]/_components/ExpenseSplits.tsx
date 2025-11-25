@@ -23,13 +23,13 @@ export function ExpenseSplits({ participants }: { participants: any[] }) {
       {splits.map((split) => (
         <div key={split.id} className="flex flex-row gap-4 items-center bg-white p-3 rounded-lg">
           <div className="w-1/3">
-            <ParticipantsDropdown participants={participants} name="splitUser[]"/>
+            <ParticipantsDropdown participants={participants} name="splitUsers"/>
           </div>
 
           <Input
             label="Monto"
             type="number"
-            name="splitAmount[]"
+            name="splitAmounts"
             size="sm"
             className="w-1/3"
           />
@@ -37,7 +37,7 @@ export function ExpenseSplits({ participants }: { participants: any[] }) {
           <Input
             label="%"
             type="number"
-            name="splitPercentage[]"
+            name="splitPercentages"
             size="sm"
             className="w-1/3"
           />

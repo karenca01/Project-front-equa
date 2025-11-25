@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import DeleteExpenseButton from "./DeleteExpenseButton";
 import { useUser } from "@/context/UserContext";
 
@@ -15,7 +16,9 @@ export default function EventExpenseItem({ expense }: { expense: any }) {
       className="border border-gray-200 p-4 rounded-lg flex justify-between items-center"
     >
       <div>
-        <p className="text-lg font-semibold">{expense.expenseDescription}</p>
+        <Link href={`/dashboard/expenses/${expense.expenseId}`}>
+          <p className="text-lg font-semibold">{expense.expenseDescription}</p>
+        </Link>
         <p className="text-sm text-gris-intermedio">
           Pagado por: {expense.paidBy?.username ?? "Usuario"}
         </p>

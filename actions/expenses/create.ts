@@ -4,14 +4,46 @@ import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 import { revalidatePath } from "next/cache";
 
+function generateParticipants(
+  splitUsers: FormDataEntryValue[],
+  splitAmounts: FormDataEntryValue[],
+  splitPercentages: FormDataEntryValue[]
+) {
+  if (!splitUsers || splitUsers.length === 0) {
+    throw new Error("Debes agregar al menos un participante");
+  }
+
+  return splitUsers.map((userId, index) => {
+    if (splitAmounts[index] === undefined || splitPercentages[index] === undefined) {
+      throw new Error("Debes proporcionar cantidad o porcentaje para cada usuario");
+    }
+
+    return {
+      userId,
+      amount: splitAmounts[index] ? Number(splitAmounts[index]) : null,
+      percentage: splitPercentages[index] ? Number(splitPercentages[index]) : null,
+    };
+  });
+}
+
 export async function addExpense(formData: FormData) {
   try {
     const expenseDescription = formData.get("expenseDescription");
     const expenseAmount = Number(formData.get("expenseAmount"));
     const eventId = formData.get("eventId");
 
-    const raw = formData.get("participants");
-    const participants = raw ? JSON.parse(raw as string) : [];
+    const splitUsers = formData.getAll("splitUsers");
+    const splitAmounts = formData.getAll("splitAmounts");
+    const splitPercentages = formData.getAll("splitPercentages");
+
+    const participants = generateParticipants(splitUsers, splitAmounts, splitPercentages);
+    
+    console.log("Participantes:", participants);
+    console.log(formData);
+
+    if(participants.length === 0){
+      throw new Error("Debes agregar al menos un participante");
+    }
 
     const splits = participants.map((p: any) => {
 
@@ -41,6 +73,9 @@ export async function addExpense(formData: FormData) {
 
     // console.log("Body enviado:", body);
 
+    const headers = await authHeaders();
+    console.log("Headers:", headers);
+
     const res = await fetch(`${API_URL}/expenses`, {
       method: "POST",
       headers: { 
@@ -51,6 +86,7 @@ export async function addExpense(formData: FormData) {
       body: JSON.stringify(body),
     });
 
+
     if (!res.ok) {
     //   console.log(await res.text());
       throw new Error("Error al crear el gasto");
@@ -59,6 +95,6 @@ export async function addExpense(formData: FormData) {
     revalidatePath(`/dashboard/events/${eventId}`);
   } catch (error) {
     // console.error("Error en addExpense:", error);
-    throw error;
+    console.error(error);
   }
 }
