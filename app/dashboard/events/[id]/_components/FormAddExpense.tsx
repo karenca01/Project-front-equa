@@ -15,38 +15,87 @@ export default function FormAddExpense({ eventId, participants }: { eventId: str
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const expenseDescription = formData.get("expenseDescription");
+    const expenseDescription = formData.get("expenseDescription") as string;
     const expenseAmount = Number(formData.get("expenseAmount"));
 
-    const splitUsers = formData.getAll("splitUsers");
+    const splitUsers = formData.getAll("splitUsers") as string[];
     const splitAmounts = formData.getAll("splitAmounts").map(v => Number(v));
     const splitPercentages = formData.getAll("splitPercentages").map(v => Number(v));
 
-    // Validar que todos los participantes estén seleccionados
+    // console.log("---- Form Data ----");
+    // console.log("Descripción:", expenseDescription);
+    // console.log("Monto total:", expenseAmount);
+    // console.log("Participantes:", splitUsers);
+    // console.log("Montos:", splitAmounts);
+    // console.log("Porcentajes:", splitPercentages);
+
+    const splitAmountsNums = splitAmounts.map(a => isNaN(a) ? null : a);
+    const splitPercentagesNums = splitPercentages.map(p => isNaN(p) ? null : p);
+
     if (splitUsers.some(u => u === "")) {
       setShowError("Debes seleccionar un participante en todos los splits");
       return;
     }
 
-    // Validación de montos o porcentajes
-    const usingPercentages = splitPercentages.some(p => !isNaN(p) && p > 0);
-    if (usingPercentages) {
-      const totalPercent = splitPercentages.reduce((acc, p) => acc + (isNaN(p) ? 0 : p), 0);
-      if (totalPercent !== 100) {
-        setShowError(`La suma de los porcentajes (${totalPercent}%) debe ser 100%`);
+    let splitsUseAmount = false;
+    let splitsUsePercentage = false;
+
+    for (let i = 0; i < splitUsers.length; i++) {
+      const amount = splitAmountsNums[i];
+      const percent = splitPercentagesNums[i];
+
+      if ((amount !== null && percent !== null && amount > 0 && percent > 0) || (amount === null && percent === null)) {
+        setShowError(`En el split de ${splitUsers[i]}, debes usar solo monto o solo porcentaje`);
+        // console.log("Error: split inválido", { user: splitUsers[i], amount, percent });
         return;
       }
-    } else {
-      const totalSplits = splitAmounts.reduce((acc, v) => acc + (isNaN(v) ? 0 : v), 0);
+
+      if (amount !== null && amount > 0) splitsUseAmount = true;
+      if (percent !== null && percent > 0) splitsUsePercentage = true;
+    }
+
+    if (splitsUseAmount && splitsUsePercentage) {
+      setShowError("No puedes mezclar montos y porcentajes en un mismo gasto");
+    //   console.log("Error: mezcla de amount y percentage en el gasto");
+      return;
+    }
+
+    // Validación de suma
+    if (splitsUseAmount) {
+      const totalSplits = splitAmountsNums.reduce<number>((acc, v) => acc + (v ?? 0), 0);
+    //   console.log("Suma montos:", totalSplits);
       if (totalSplits !== expenseAmount) {
         setShowError(`La suma de los montos (${totalSplits}) no coincide con el total (${expenseAmount})`);
         return;
       }
     }
 
+    if (splitsUsePercentage) {
+      const totalPercent = splitPercentagesNums.reduce<number>((acc, p) => acc + (p ?? 0), 0);
+    //   console.log("Suma porcentajes:", totalPercent);
+      if (totalPercent !== 100) {
+        setShowError(`La suma de los porcentajes (${totalPercent}%) debe ser 100%`);
+        return;
+      }
+    }
+
     setShowError("");
 
-    // Llamar al action
+    const splits = splitUsers.map((user, index) => ({
+      userId: user,
+      expenseSplitAmount: splitAmountsNums[index] || null,
+      expenseSplitPercentage: splitPercentagesNums[index] || null,
+    }));
+
+    const body = {
+      expenseDescription,
+      expenseAmount,
+      eventId,
+      splits,
+    };
+
+    // console.log(body);
+
     addExpense(formData);
   };
 
