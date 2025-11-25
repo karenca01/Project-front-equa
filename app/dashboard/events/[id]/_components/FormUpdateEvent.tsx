@@ -41,9 +41,9 @@ export default function FormUpdateEvent({ event }: { event: Event }) {
       </div>
 
       {isCreator && (
-        <div className="flex flex-row items-center justify-center gap-2">
-          <Button type="submit" className="bg-gris-fuerte hover:bg-gray-600">
-            <LuCheck size="20" />
+        <div className="flex flex-col items-center justify-center gap-2">
+          <Button type="submit" className="w-fit" color="success" variant="flat">
+            Actualizar {<LuCheck size="20" />}
           </Button>
           <DeleteEvent>
             <DeleteButton eventId={event.eventId} />

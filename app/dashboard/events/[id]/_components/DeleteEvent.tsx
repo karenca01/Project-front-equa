@@ -15,7 +15,9 @@ export default function DeleteEvent({children}: {children: ReactNode}) {
 
   return (
     <>
-      <Button onPress={onOpen} color="danger"><LuTrash size="20"/></Button>
+      <Button onPress={onOpen} className='w-fit' variant='flat' color="danger">
+        Eliminar evento{<LuTrash size="20"/>}
+        </Button>
       <Modal className="bg-gris-fuerte items-center" isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
         <ModalContent className='w-[300px]'>
           {(onClose) => (

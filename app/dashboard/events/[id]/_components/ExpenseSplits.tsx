@@ -12,7 +12,7 @@ export function ExpenseSplits({ participants }: { participants: any[] }) {
   const removeSplit = (id: number) => setSplits(splits.filter(s => s.id !== id));
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 items-center">
       <h2 className="text-xl font-semibold">Divide tu gasto</h2>
 
       {splits.map((split) => (
@@ -48,7 +48,7 @@ export function ExpenseSplits({ participants }: { participants: any[] }) {
         </div>
       ))}
 
-      <Button onPress={addSplit} className="bg-blue-600 text-white">
+      <Button onPress={addSplit} isIconOnly color="primary" variant="flat">
         <LuPlus size="15" />
       </Button>
     </div>
