@@ -1,3 +1,5 @@
+//card solo con el nombre del evento
+
 "use client";
 
 import { Card, CardHeader, CardBody, Divider } from "@heroui/react";

@@ -1,3 +1,5 @@
+//lista que aparece al agrergar el participante al split
+
 "use client";
 
 export function ParticipantsDropdown({

@@ -1,3 +1,5 @@
+//obtener el balance al dar click
+
 "use client";
 
 import { useEffect, useState } from "react";

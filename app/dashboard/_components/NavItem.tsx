@@ -1,3 +1,4 @@
+//checa la ruta y la marca
 "use client";
 
 import Link from "next/link";

@@ -1,3 +1,5 @@
+//lista al visualizar la infromación del evento
+
 "use client";
 
 import { API_URL } from "@/constants";

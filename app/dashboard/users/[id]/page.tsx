@@ -1,3 +1,5 @@
+//page con la información del usuario en sesión
+
 "use client";
 import { useUser } from "@/context/UserContext";
 import UpdateUser from "./_components/UpdateUser";

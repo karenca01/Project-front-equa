@@ -1,3 +1,5 @@
+//se muestra al agregar un split sobre gasto
+
 "use client";
 
 import { useState } from "react";

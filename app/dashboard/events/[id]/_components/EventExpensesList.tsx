@@ -1,3 +1,5 @@
+//lista a la que se le importan los gastos
+
 import { API_URL } from "@/constants";
 import EventExpenseItem from "./ExpenseItem";
 

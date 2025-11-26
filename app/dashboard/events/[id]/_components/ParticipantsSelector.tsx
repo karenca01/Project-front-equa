@@ -18,7 +18,7 @@ export default function ParticipantsSelector({ eventId }: { eventId: string }) {
       const res = await fetch(`${API_URL}/users/search?q=${query}`);
       const data = await res.json();
 
-      console.log("SEARCH RESULT:", data);
+      // console.log("SEARCH RESULT:", data);
       setResults(data);
     };
 

@@ -1,3 +1,5 @@
+//page del evento por id
+
 import { Event } from "@/entities";
 import { API_URL } from "@/constants";
 import FormAddExpense from "./_components/FormAddExpense";

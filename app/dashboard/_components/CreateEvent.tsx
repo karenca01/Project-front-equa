@@ -1,3 +1,5 @@
+//solo es el modal
+
 'use client';
 import { ReactNode } from 'react';
 

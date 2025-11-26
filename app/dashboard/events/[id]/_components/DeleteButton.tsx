@@ -1,3 +1,5 @@
+//botón para confirmar el eliminar el evento
+
 import deleteEvent from "@/actions/events/delete"
 import { Button } from "@heroui/react"
 

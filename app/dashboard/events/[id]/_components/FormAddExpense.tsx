@@ -41,6 +41,7 @@ export default function FormAddExpense({ eventId, participants }: { eventId: str
     let splitsUseAmount = false;
     let splitsUsePercentage = false;
 
+    //verificación de campos en splits
     for (let i = 0; i < splitUsers.length; i++) {
       const amount = splitAmountsNums[i];
       const percent = splitPercentagesNums[i];

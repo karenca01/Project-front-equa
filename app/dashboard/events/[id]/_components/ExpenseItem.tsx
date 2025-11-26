@@ -1,3 +1,5 @@
+//información de un gasto
+
 "use client";
 
 import Link from "next/link";

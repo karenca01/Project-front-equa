@@ -1,3 +1,5 @@
+//page para visualizar la información de un gasto
+
 import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Expense } from "@/entities";

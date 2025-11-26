@@ -1,3 +1,5 @@
+//lista de eventos a los que me uni
+
 "use client";
 
 import { API_URL } from "@/constants";

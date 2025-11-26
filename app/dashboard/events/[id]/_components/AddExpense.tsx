@@ -1,3 +1,5 @@
+//solo es el modal para añadir gasto
+
 'use client';
 import { ReactNode } from 'react';
 

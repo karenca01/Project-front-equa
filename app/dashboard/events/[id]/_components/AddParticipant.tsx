@@ -1,3 +1,5 @@
+//modal para añadir participante
+
 "use client";
 
 import { ReactNode } from "react";

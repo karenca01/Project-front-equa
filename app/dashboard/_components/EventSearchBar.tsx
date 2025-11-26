@@ -1,3 +1,5 @@
+//para buscar eventos con id
+
 "use client";
 
 import { useState } from "react";
