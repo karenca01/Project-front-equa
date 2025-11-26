@@ -18,13 +18,13 @@ export default function DeleteEvent({children}: {children: ReactNode}) {
       <Button onPress={onOpen} className='w-fit' variant='flat' color="danger">
         Eliminar evento{<LuTrash size="20"/>}
         </Button>
-      <Modal className="bg-gris-fuerte items-center" isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
+      <Modal className="bg-gris-intermedio items-center" isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
         <ModalContent className='w-[300px]'>
           {(onClose) => (
             <>
               <ModalBody>
                 {children}
-                <Button className='w-[100px]' onPress={onClose}>Cancelar</Button>
+                <Button className='w-[100px]' color='default' variant='flat' onPress={onClose}>Cancelar</Button>
               </ModalBody>
             </>
           )}

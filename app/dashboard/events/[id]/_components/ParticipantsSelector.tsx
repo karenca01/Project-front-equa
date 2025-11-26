@@ -38,7 +38,7 @@ export default function ParticipantsSelector({ eventId }: { eventId: string }) {
   }
 
   return (
-    <form action={addParticipants} className="flex flex-col gap-4">
+    <form action={addParticipants} className="flex flex-col gap-4 items-center">
       <h1 className="text-2xl font-semibold">Agregar participantes</h1>
 
       <input type="hidden" name="eventId" value={eventId} />
@@ -94,7 +94,9 @@ export default function ParticipantsSelector({ eventId }: { eventId: string }) {
 
       <Button
         type="submit"
-        className="bg-gris-fuerte hover:bg-gray-600"
+        className="w-fit"
+        color="primary"
+        variant="flat"
       >
         Guardar
       </Button>

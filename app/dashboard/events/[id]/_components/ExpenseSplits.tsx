@@ -39,7 +39,8 @@ export function ExpenseSplits({ participants }: { participants: any[] }) {
 
           {splits.length > 1 && (
             <Button
-              className="bg-red-600 text-white"
+              color="danger"
+              variant="flat"
               onPress={() => removeSplit(split.id)}
             >
               <LuTrash size="15" />

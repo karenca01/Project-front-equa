@@ -13,7 +13,7 @@ export default function FormUpdateUser({user}: {user: User}){
             <Input label="Nombre completo" name="userFullName" defaultValue={user.userFullName}/>
             <Input label="Correo electrónico" name="userEmail" defaultValue={user.userEmail}/>
             <Input label="Contraseña" name="userPassword"/>
-            <Button type="submit" color="primary" variant="shadow" className="w-fit">Guardar cambios</Button>
+            <Button type="submit" color="primary" variant="flat" className="w-fit">Guardar cambios</Button>
         </form>
     )
 }

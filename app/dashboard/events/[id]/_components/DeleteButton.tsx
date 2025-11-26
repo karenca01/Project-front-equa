@@ -6,7 +6,7 @@ export default function DeleteButton({eventId} : {eventId: string}) {
 
     return(
         <form action={deleteEvenetById} className="flex">
-            <Button className="w-[100px]" color="danger" type="submit">Estoy seguro</Button>
+            <Button className="w-[100px]" color="danger" variant="flat" type="submit">Estoy seguro</Button>
         </form>
     )
 }
